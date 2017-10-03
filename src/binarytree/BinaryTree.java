@@ -6,12 +6,10 @@
 package binarytree;
 
 /**
-
  @author martineca
  */
 public class BinaryTree
 {
-
     /**
      @param args the command line arguments
      */
