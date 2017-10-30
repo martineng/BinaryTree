@@ -190,7 +190,7 @@ public class Tree
         } // END IF Have Two Children Node
         
         return true; // Delete Successful
-    }
+    } // END delete()
     
     /* This function will return the next highest value after the deletingNode 
        shift to the right, then the right node's left node*/
@@ -214,5 +214,55 @@ public class Tree
         }
         
         return nextNode;
+    } // END rearrange()
+    
+    public void displayTree()
+    {
+        int blank = 32;
+        boolean isRowEmpty = false;
+        
+        Stack theStack = new Stack();
+        theStack.push(getRootNode());
+        
+        while (!isRowEmpty)
+        {
+            Stack tempStack = new Stack();
+            isRowEmpty = true;
+            
+            for (int blankCount = 0; blankCount < blank; blankCount++)
+            {
+                System.out.print(' ');
+                
+                while (!theStack.isEmpty())
+                {
+                    Node tempNode = theStack.pop();
+                    
+                    if (tempNode!= null)
+                    {
+                        System.out.print(tempNode.getId());
+                        tempStack.push(tempNode.getLeftNode());
+                        tempStack.push(tempNode.getRightNode());
+                        
+                        if (tempNode.getLeftNode() == null &&
+                            tempNode.getRightNode() == null)
+                        {
+                            isRowEmpty = false;
+                        }
+                    }
+                    else
+                    {
+                        System.out.print("--");
+                        tempStack.push(null);
+                        tempStack.push(null);
+                    }
+                    
+                    for (int nodeCount = 0; nodeCount < blank*2-2; nodeCount++)
+                    {
+                        System.out.print(' ');
+                    }
+                } // END WHILE (!theStack.isEmpty())          
+            }
+        }
+        
     }
 }
