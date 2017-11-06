@@ -7,6 +7,7 @@ import java.util.Random;
 
 public class BinaryTreeLauncher
 {
+    // Declaring component
     Scanner inputScanner = new Scanner(System.in);
     Tree theTree = new Tree();
     
@@ -15,28 +16,34 @@ public class BinaryTreeLauncher
         // Empty
     }
     
-    public void run()
+    // This function will run the entire program
+    public int run()
     {
-        int menuInput = 0;
+        int menuInput = 0; // user input on menu selection
+        
+        generateTree();
         
         try
         {
             do
             {
                 menu();
+                System.out.println("Please enter the index number: ");
                 menuInput = inputScanner.nextInt();
                 
                 switch(menuInput)
                 {
-                    case 1:
+                    case 1: // Regenerate new Tree
+                        generateTree();
                         break;
-                    case 2:
+                    case 2: // Inserting New Node
+                        insertNode();
                         break;
-                    case 3:
+                    case 3: // Deleting Node
                         break;
-                    case 4:
+                    case 4: // Find Node
                         break;
-                    case 0:
+                    case 0: // Exit the loop
                         break;
                     default:
                         break;
@@ -48,6 +55,8 @@ public class BinaryTreeLauncher
         {
             System.err.println(exception.getMessage());
         } // END catch
+        
+        return menuInput;
     }
     
     protected void menu()
@@ -60,9 +69,9 @@ public class BinaryTreeLauncher
         System.out.println("(3) - Delete Node");
         System.out.println("(4) - Find Node");
         System.out.println("(0) - Exit");
-    }
+    } // END menu()
     
-    
+    // Simple function to return a random integer between 101 ~ 199
     protected int generateRandomInt()
     {
         Random rand = new Random();
@@ -71,6 +80,7 @@ public class BinaryTreeLauncher
         return randomNum + 101;
     } // END generateRandomInt()
     
+    // Simple function   to return a random double betwween
     protected double generateRandomDouble()
     {
         Random rand = new Random();
@@ -80,11 +90,29 @@ public class BinaryTreeLauncher
         return (randomInt + randomDouble);
     } // END generateRandomDouble()
     
-    protected void onStart()
+    // This function will be called when the program first launch
+    // It will generate 15 nodes in random.
+    protected void generateTree()
     {
-        for (int count = 0;count <= 15; count++)
+        theTree = new Tree();
+        
+        for (int count = 0; count <= 15; count++)
         {
             theTree.insert(generateRandomInt(), generateRandomDouble());
         } // END for
-    } // END onStart()
+    } // END regenerateTree()
+    
+    protected void insertNode()
+    {
+        int nodeId = 0;
+        double nodeValue = 0.0;
+        
+        System.out.println("Please enter the Node ID (integer)");
+        nodeId = inputScanner.nextInt();
+        
+        System.out.println("Please enter the Node value (double)");
+        nodeValue = inputScanner.nextDouble();
+        
+        theTree.insert(nodeId, nodeValue);
+    } // END insertNode()
 }
