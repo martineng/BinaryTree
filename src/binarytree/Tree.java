@@ -224,7 +224,7 @@ public class Tree
         Stack theStack = new Stack();
         theStack.push(getRootNode());
         
-        while (!isRowEmpty)
+        while (isRowEmpty == false)
         {
             Stack tempStack = new Stack();
             isRowEmpty = true;
@@ -232,37 +232,46 @@ public class Tree
             for (int blankCount = 0; blankCount < blank; blankCount++)
             {
                 System.out.print(' ');
-                
-                while (!theStack.isEmpty())
-                {
-                    Node tempNode = theStack.pop();
-                    
-                    if (tempNode!= null)
-                    {
-                        System.out.print(tempNode.getId());
-                        tempStack.push(tempNode.getLeftNode());
-                        tempStack.push(tempNode.getRightNode());
-                        
-                        if (tempNode.getLeftNode() == null &&
-                            tempNode.getRightNode() == null)
-                        {
-                            isRowEmpty = false;
-                        }
-                    }
-                    else
-                    {
-                        System.out.print("--");
-                        tempStack.push(null);
-                        tempStack.push(null);
-                    }
-                    
-                    for (int nodeCount = 0; nodeCount < blank*2-2; nodeCount++)
-                    {
-                        System.out.print(' ');
-                    }
-                } // END WHILE (!theStack.isEmpty())          
             }
+                
+            while (theStack.isEmpty() == false)
+            {
+                Node tempNode = (Node)theStack.pop();
+
+                if (tempNode!= null)
+                {
+                    System.out.print(tempNode.getId());
+                    tempStack.push(tempNode.getLeftNode());
+                    tempStack.push(tempNode.getRightNode());
+
+                    if (tempNode.getLeftNode() != null &&
+                        tempNode.getRightNode() != null)
+                    {
+                        isRowEmpty = false;
+                    }
+                }
+                else
+                {
+                    System.out.print("--");
+                    tempStack.push(null);
+                    tempStack.push(null);
+                }
+
+                for (int nodeCount = 0; nodeCount < (blank*2-2); nodeCount++)
+                {
+                    System.out.print(' ');
+                } 
+            } // END WHILE (!theStack.isEmpty())
+
+            System.out.println();
+            blank /= 2;
+
+            while (tempStack.isEmpty() == false)
+            {
+                theStack.push(tempStack.pop());
+            } // END WHILE (!tempStack.isEmpty())
+
         }
-        
+        System.out.println("----endoftree----");
     }
 }

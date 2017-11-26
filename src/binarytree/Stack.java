@@ -10,7 +10,7 @@ public class Stack
     // Constructor
     public Stack()
     {
-       maxSize = 10;
+       maxSize = 32;
        stackArray = new Node[maxSize];
        top = -1;
     }

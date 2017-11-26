@@ -27,6 +27,9 @@ public class BinaryTreeLauncher
         {
             do
             {
+                theTree.displayTree();
+                System.out.println("==============================================");
+                
                 menu();
                 System.out.println("Please enter the index number: ");
                 menuInput = inputScanner.nextInt();
