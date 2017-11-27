@@ -43,6 +43,7 @@ public class BinaryTreeLauncher
                         insertNode();
                         break;
                     case 3: // Deleting Node
+                        deleteNode();
                         break;
                     case 4: // Find Node
                         findNode();
@@ -228,4 +229,24 @@ public class BinaryTreeLauncher
         System.out.println("===========End Search Result===========\n");
     } // END findNode()
     
+    protected void deleteNode()
+    {
+        int nodeIdToDelete = 0;
+        
+        System.out.println("Please enter the Node Id you wish to be deleted");
+        nodeIdToDelete = inputScanner.nextInt();
+        
+        System.out.println("\n=============Delete Result=============");
+        
+        if (theTree.delete(nodeIdToDelete))
+        {
+            System.out.println("Node [" + nodeIdToDelete + "] deleted!");
+        }
+        else
+        {
+            System.out.println("Delete Failed! No Node [" + nodeIdToDelete + "] found!");
+        }
+        
+        System.out.println("===========End Delete Result===========\n");
+    }
 }

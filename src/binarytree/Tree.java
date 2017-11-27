@@ -227,6 +227,8 @@ public class Tree
         Stack theStack = new Stack();
         theStack.push(getRootNode());
         
+        System.out.println("================TREE================\n");
+        
         while (isRowEmpty == false)
         {
             Stack tempStack = new Stack();
@@ -275,6 +277,6 @@ public class Tree
             } // END WHILE (!tempStack.isEmpty())
 
         }
-        System.out.println("----endoftree----");
+        System.out.println("=============END OF TREE=============\n");
     }
 }
