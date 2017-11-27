@@ -6,9 +6,10 @@ public class Tree
 {
     private Node rootNode;
     
+    // Constructor of Empty Tree
     public Tree()
     {
-        rootNode = null;
+        rootNode = null; 
     }
     
     public void setRootNode(Node inRootNode)
@@ -71,6 +72,7 @@ public class Tree
                     if (currentNode == null) // If at the End of Tree
                     {
                         parentNode.setLeftNode(newNode); // Insert on Left
+                        return;
                     }
                 }
                 else // Go Right 
@@ -80,6 +82,7 @@ public class Tree
                     if (currentNode == null) // If at the End of Tree
                     {
                         parentNode.setRightNode(newNode); // Insert on Right
+                        return;
                     }
                 }
                

@@ -1,13 +1,13 @@
-/*
+/* Node class that store values and the neighbour Nodes
  */
 package binarytree;
 
 public class Node
 {
-    private int id;
-    private double value;
-    private Node leftNode;
-    private Node rightNode;
+    protected int id;
+    protected double value;
+    protected Node leftNode;
+    protected Node rightNode;
     
     //Default Constructor
     public Node()

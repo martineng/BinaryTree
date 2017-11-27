@@ -1,4 +1,4 @@
-/*
+/* This is the Stack structure used to when displaying tree
  */
 package binarytree;
 
@@ -10,7 +10,7 @@ public class Stack
     // Constructor
     public Stack()
     {
-       maxSize = 32;
+       maxSize = 50;
        stackArray = new Node[maxSize];
        top = -1;
     }

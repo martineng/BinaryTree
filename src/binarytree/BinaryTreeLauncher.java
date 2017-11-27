@@ -1,4 +1,4 @@
-/*
+/* The Launcher that does all the logical thinking
  */
 package binarytree;
 
@@ -94,14 +94,73 @@ public class BinaryTreeLauncher
     } // END generateRandomDouble()
     
     // This function will be called when the program first launch
-    // It will generate 15 nodes in random.
+    // It will generate 7 nodes in random.
     protected void generateTree()
     {
-        theTree = new Tree();
+        int randomInt = 0, previousInt = 0;
+        double randomDouble = 0.0;
+        int rightCount = 0, leftCount = 0; // Keep track of right left branches
         
-        for (int count = 0; count <= 15; count++)
+        theTree = new Tree(); // Reset tree when fucntion is called
+        
+        // To generate 7 random Nodes
+        for (int count = 0; count <= 7; count++)
         {
-            theTree.insert(generateRandomInt(), generateRandomDouble());
+            randomInt = generateRandomInt();
+            randomDouble = generateRandomDouble();
+            
+            // Verifying Node Id
+            // Avoid similar number to be generated
+            // Avoid Right Left branch exceeded 15 Nodes
+            if (theTree.getRootNode() != null)
+            {
+                // If generate similar number as Root Node
+                if (randomInt == theTree.getRootNode().getId())
+                {
+                    do
+                    {
+                        randomInt = generateRandomInt();
+                    } while(randomInt == theTree.getRootNode().getId());
+                }
+                
+                // If generated similiar number twices
+                if (randomInt == previousInt)
+                {
+                    do
+                    {
+                        randomInt = generateRandomInt();
+                    } while(randomInt == previousInt);
+                }
+                
+                // If right branches exceeded 15 nodes in total, vice verse
+                if (rightCount == 15 && randomInt < theTree.getRootNode().getId())
+                {
+                    do
+                    {
+                        randomInt = generateRandomInt();
+                    } while(randomInt < theTree.getRootNode().getId());
+                } // END IF
+                else if (leftCount == 15 && randomInt > theTree.getRootNode().getId())
+                {
+                    do
+                    {
+                        randomInt = generateRandomInt();
+                    } while (randomInt > theTree.getRootNode().getId());
+                }
+                
+                // Keep track of number nodes in right left branches
+                if (randomInt < theTree.getRootNode().getId())
+                {
+                    rightCount += 1;
+                }
+                else if(randomInt > theTree.getRootNode().getId())
+                {
+                    leftCount += 1;
+                }
+            }
+            
+            previousInt = randomInt; // Keep record of previoud generated Int
+            theTree.insert(randomInt, randomDouble); // Insert into tree
         } // END for
     } // END regenerateTree()
     
