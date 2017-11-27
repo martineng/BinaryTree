@@ -45,6 +45,7 @@ public class BinaryTreeLauncher
                     case 3: // Deleting Node
                         break;
                     case 4: // Find Node
+                        findNode();
                         break;
                     case 0: // Exit the loop
                         break;
@@ -177,4 +178,54 @@ public class BinaryTreeLauncher
         
         theTree.insert(nodeId, nodeValue);
     } // END insertNode()
+    
+    protected void findNode()
+    {
+        int nodeIdToFind =0;
+        Node resultNode = new Node();
+        
+        System.out.println("Please enter the Node Id (integer) to find");
+        nodeIdToFind = inputScanner.nextInt();
+        
+        // Do search
+        resultNode = theTree.search(nodeIdToFind);
+        
+        System.out.println("\n=============Search Result=============");
+        
+        // If no result
+        if (resultNode == null)
+        {
+            System.out.println("No Node found!");
+        }
+        else // Display information
+        {
+            System.out.println("Node ID [" + nodeIdToFind + "] found!");
+            System.out.println("It contains value: " + resultNode.getValue());
+            
+            // If no Left Node
+            if (resultNode.getLeftNode()== null)
+            {
+                System.out.println("It doesn't has a Left Node!");
+            }
+            else
+            {
+                System.out.print("It has a Left Node with ID: " + resultNode.leftNode.getId() + ", ");
+                System.out.println("Values: " + resultNode.leftNode.getValue());
+            }
+            
+            // If no Right Node
+            if (resultNode.getRightNode() == null)
+            {
+                System.out.println("It doesn't has a Right Node!");
+            }
+            else
+            {
+                System.out.print("It has a Right Node with ID: " + resultNode.rightNode.getId() + ", ");
+                System.out.println("Values: " + resultNode.rightNode.getValue());
+            }
+        } // END IF
+        
+        System.out.println("===========End Search Result===========\n");
+    } // END findNode()
+    
 }
